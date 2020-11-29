@@ -1,0 +1,6 @@
+<div class="nav-wrapper">
+  <a mat-button routerLink="/schedules/public" routerLinkActive="active">public schedules</a>
+  <a mat-button *ngIf="role === 'user'" routerLink="/schedules/private" routerLinkActive="active">private schedules</a>
+  <a mat-button routerLink="/courses" routerLinkActive="active">course store</a>
+  <a mat-button *ngIf="role === 'admin'" routerLink="/user-manage" routerLinkActive="active">user manage</a>
+</div>

@@ -1,0 +1,16 @@
+<div class="register-wrapper">
+    <h3>Sign Up</h3>
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Email" [(ngModel)]="formData.email" value="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Username" [(ngModel)]="formData.name" value="">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <input matInput placeholder="Password" [(ngModel)]="formData.password" value="">
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onSubmit()">Submit</button>
+  
+</div>

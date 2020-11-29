@@ -1,0 +1,32 @@
+.wrapper {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 85vh;
+  
+}
+.wrapper > div {
+  box-sizing: border-box;
+  padding: 10px;
+  overflow: hidden;
+  outline: 1px solid gray;
+}
+
+.header-wrapper {
+  width: 100vw;
+  height: 15vh;
+  
+  float: left;
+}
+
+.nav-wrapper {
+  width: 20vw;
+  height: 85vh;
+  float: left;
+}
+
+.content-wrapper {
+  box-sizing: border-box;
+  width: 80vw;
+  height: 85vh;
+  float: left;
+}

@@ -1,0 +1,58 @@
+<div class="wrapper">
+  <div class="bar" *ngIf="role === 'user' || role === 'manager'">
+    <mat-form-field  class="example-full-width">
+      <input matInput placeholder="new schedule name" [(ngModel)]="formData.name" value="">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select [(ngModel)]="formData.type" placeholder="new schedule type">
+        <mat-option  value="private">private</mat-option>
+        <mat-option  value="public">public</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="onCreate()">create</button>
+  </div>
+  <table mat-table [dataSource]="schedules" class="mat-elevation-z8">
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+    </ng-container>
+
+    <!-- Type Column -->
+    <ng-container matColumnDef="type">
+      <th mat-header-cell *matHeaderCellDef>type</th>
+      <td mat-cell *matCellDef="let element">{{ element.type }}</td>
+    </ng-container>
+
+    <!-- Creator Column -->
+    <ng-container matColumnDef="creator">
+      <th mat-header-cell *matHeaderCellDef>creator</th>
+      <td mat-cell *matCellDef="let element">{{ element.user_name }}</td>
+    </ng-container>
+
+    <!-- Courses Count -->
+    <ng-container matColumnDef="CourseCount">
+      <th mat-header-cell *matHeaderCellDef>CourseCount</th>
+      <td mat-cell *matCellDef="let element">{{ element.courses_count }}</td>
+    </ng-container>
+
+    <!-- timestamp Column -->
+    <ng-container matColumnDef="timestamp">
+      <th mat-header-cell *matHeaderCellDef>timestamp</th>
+      <td mat-cell *matCellDef="let element">{{ element.timestamp }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="operation">
+      <th  mat-header-cell *matHeaderCellDef>operation</th>
+      <td mat-cell *matCellDef="let element">
+        <button *ngIf="role === 'user' || role === 'manager'" mat-raised-button color="warn" (click)="onDelete(element)">delete</button>
+        <button style="margin-left: 2vw;" mat-raised-button color="primary" (click)="onViewCourses(element)">view courses</button>
+      </td>
+    </ng-container>
+    
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>

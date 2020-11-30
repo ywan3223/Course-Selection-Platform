@@ -1,0 +1,23 @@
+.wrapper {
+  overflow: hidden;
+  width: 100%;
+  height: 95%;
+}
+.bar {
+  width: 100%;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+.bar > * {
+  margin-right: 2vw;
+}
+.table-wrapper {
+  width: 100%;
+  height: 70vh;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}

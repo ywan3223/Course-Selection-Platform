@@ -1,7 +1,0 @@
-<div class="header">
-  <a mat-button routerLink="/" routerLinkActive="active">Home</a>
-  <span class="name" *ngIf="userStatus === 'login'">{{ userInfo.name }}</span>
-  <a *ngIf="userStatus === 'unlogin'" mat-button routerLink="/login" routerLinkActive="active">Sign In</a>
-  <a *ngIf="userStatus === 'unlogin'" mat-button routerLink="/register" routerLinkActive="active">Sign Up</a>
-  <button *ngIf="userStatus === 'login'" mat-button (click)="onSighOut()">Sign Out</button>
-</div>

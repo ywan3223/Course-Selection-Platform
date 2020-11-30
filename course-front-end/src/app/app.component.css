@@ -1,0 +1,10 @@
+.wrapper {
+  width: 100vw;
+  height: 100vh;
+}
+.header-wrapper {
+  width: 100vw;
+  height: 15vh;
+  
+  float: left;
+}

@@ -1,0 +1,34 @@
+<div class="wrapper">
+  <div class="bar">
+    <span>Schedule Name: {{ scheduleInfo.name }}</span>
+    <button *ngIf="role === 'user'" mat-raised-button color="warn" (click)="onClearUp()">clear up</button>
+  </div>
+  <div class="table-wrapper">
+    <table mat-table [dataSource]="courses" class="mat-elevation-z8">
+      <ng-container matColumnDef="ClassName">
+        <th mat-header-cell *matHeaderCellDef>ClassName</th>
+        <td mat-cell *matCellDef="let element">{{ element.className }}</td>
+      </ng-container>
+      <ng-container matColumnDef="Subject">
+        <th mat-header-cell *matHeaderCellDef>Subject</th>
+        <td mat-cell *matCellDef="let element">{{ element.subject }}</td>
+      </ng-container>
+      <ng-container matColumnDef="CatalogNbr">
+        <th mat-header-cell *matHeaderCellDef>CatalogNbr</th>
+        <td mat-cell *matCellDef="let element">{{ element.catalog_nbr }}</td>
+      </ng-container>
+      <ng-container matColumnDef="SsrComponent">
+        <th mat-header-cell *matHeaderCellDef>SsrComponent</th>
+        <td mat-cell *matCellDef="let element">{{ element.ssr_component }}</td>
+      </ng-container>
+      <ng-container matColumnDef="Operation">
+        <th mat-header-cell *matHeaderCellDef>Operation</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-raised-button color="accent" (click)="onDeleteCourse(element)">delete</button>
+        </td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+  </div>
+</div>

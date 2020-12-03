@@ -37,6 +37,9 @@ registerRoutes(courseController.routes);
 const scheduleController = require("./controller/schedule");
 registerRoutes(scheduleController.routes);
 
+const websiteController = require("./controller/website");
+registerRoutes(websiteController.routes);
+
 app.listen(port, () => console.log(`the server started at port ${port}`));
 
 

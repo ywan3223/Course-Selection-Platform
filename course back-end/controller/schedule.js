@@ -15,8 +15,26 @@ class Schedule {
       { url: "/schedule/delete", method: "post", handle: this.delete },
       { url: "/private-schedules/get", method: "get", handle: this.getAllPrivateSchedules },
       { url: "/public-schedules/get", method: "get", handle: this.getAllPublicSchedules },
-      { url: "/schedule-info/get/:id", method: 'get', handle: this.getScheduleInfo }
+      { url: "/schedule-info/get/:id", method: 'get', handle: this.getScheduleInfo },
+      { url: "/schedule/edit", method: 'post', handle: this.editSchedule }
     ];
+  }
+
+  /**
+   * /schedule/edit
+   */
+  async editSchedule(req, res) {
+    try {
+      const { id, name, type, description } = req.body;
+      const edit_res = await ScheduleModel.edit(id, name, type, description);
+      if (edit_res) {
+        res.send(Response(0, 'edit successfully!', {})); 
+      } else {
+        res.send(Response(0, 'edit failly!', {})); 
+      }
+    } catch(err) {
+      res.send(Response(1, err.stack, []));
+    }
   }
 
   /**
@@ -116,6 +134,7 @@ class Schedule {
    * /schedule/create
    * @query { name } schedule name
    * @query { type } public or private
+   * @query { description } schedule's description
    */
   async create(req, res) {
     try {
@@ -157,8 +176,8 @@ class Schedule {
       }
 
       // create new schedule
-      let { name, type = "private" } = req.body;
-      const create_res = await ScheduleModel.create(name, user_info.id, type);
+      let { name, type = "private", description = '' } = req.body;
+      const create_res = await ScheduleModel.create(name, user_info.id, type, description);
       if (create_res) {
         res.send(Response(0, "create successfully!", {}));
       } else {

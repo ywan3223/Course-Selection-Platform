@@ -93,7 +93,7 @@ class User {
       // check password
       const password_is_right = await UserModel.passwordIsRight(name, password);
       if (!password_is_right) {
-        res.send(Response(1`the password is not right`, {}));
+        res.send(Response(1, `the password is not right`, {}));
         return;
       }
 

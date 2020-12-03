@@ -122,10 +122,21 @@ class ScheduleModel {
     return 10;
   }
 
+  // edit schedule
+  async edit(id, name, type, description) {
+    const sql = `update schedules set name='${name}' , type = '${type}' , description='${description}' where id=${id}`;
+    const res = await exec(sql);
+    if (res && res.affectedRows === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // create schedule
-  async create(name, user_id, type) {
-    const sql = `insert into schedules (name, user_id, type) values ( 
-      '${name}', ${user_id}, '${type}'  
+  async create(name, user_id, type, description) {
+    const sql = `insert into schedules (name, user_id, type, description) values ( 
+      '${name}', ${user_id}, '${type}', '${description}'  
     )`;
     const res = await exec(sql);
     if (res && res.affectedRows === 1) {

@@ -120,6 +120,16 @@ class UserModel {
     }
   }
 
+
+  async getUserNameById(id) {
+    const sql = `select name from users where id = ${id}`;
+    const res = await exec(sql);
+    if (Array.isArray(res) && res.length > 0) {
+      return res[0].name;
+    }
+    return '';
+  }
+
   async register(name, email, password) {
     const [salt, hash] = mini_crypt.hash(password);
     const token = md5(name + hash);

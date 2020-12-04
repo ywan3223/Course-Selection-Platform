@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { request } from '../request';
 import { getUserInfo } from '../localstorage';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-courses-store',
@@ -31,7 +32,7 @@ export class CoursesStoreComponent implements OnInit {
   };
   subjects = [];
   role = '';
-  constructor() {}
+  constructor(private router: Router) {}
 
   async onSearchByClassNameAndCatalog(): Promise<void> {
     const { className, catalog } = this.searchData;
@@ -103,6 +104,12 @@ export class CoursesStoreComponent implements OnInit {
         schedule_id: schedule,
       }),
     });
+  }
+
+  onLookReviews(element): void {
+    this.router.navigate([
+      `course-review/${element.subject}/${element.catalog_nbr}`,
+    ]);
   }
 
   ngOnInit(): void {

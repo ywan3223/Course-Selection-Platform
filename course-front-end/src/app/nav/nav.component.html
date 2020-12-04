@@ -3,4 +3,5 @@
   <a mat-button *ngIf="role === 'user' || role === 'admin' || role === 'manager'" routerLink="/schedules/private" routerLinkActive="active">private schedules</a>
   <a mat-button routerLink="/courses" routerLinkActive="active">course store</a>
   <a mat-button *ngIf="role === 'admin' || role === 'manager'" routerLink="/user-manage" routerLinkActive="active">user manage</a>
+  <a mat-button *ngIf="role === 'admin'" routerLink="/copyright-edit" routerLinkActive="active">copyright edit</a>
 </div>

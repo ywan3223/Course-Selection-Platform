@@ -1,0 +1,15 @@
+<div class="wrapper">
+  <mat-form-field  class="example-full-width">
+    <input matInput placeholder="schedule name" [(ngModel)]="formData.name" >
+  </mat-form-field>
+  <mat-form-field>
+    <mat-select [(ngModel)]="formData.type" placeholder="new schedule type">
+      <mat-option  value="private">private</mat-option>
+      <mat-option  value="public">public</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field  class="example-full-width">
+    <input matInput placeholder="schedule description" [(ngModel)]="formData.description" value="">
+  </mat-form-field>
+  <button mat-raised-button (click)="onSubmit()" color='primary'>submit</button>
+</div>

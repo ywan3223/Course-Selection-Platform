@@ -30,3 +30,9 @@
   height: 85vh;
   float: left;
 }
+
+.copyright {
+  position: fixed;
+  bottom: 5vh;
+  left: 40vw;
+}

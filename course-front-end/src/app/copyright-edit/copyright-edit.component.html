@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <mat-form-field style="width: 50vw;height: 20vh; margin-bottom: 10vh;">
+    <textarea
+      style="width: 50vw;height: 20vh;"
+      matInput
+      placeholder="please input your copyright"
+      [(ngModel)]="formData.copyright"
+    ></textarea>
+  </mat-form-field>
+  <div><button mat-raised-button (click)="onSubmit()" color="primary">submit</button></div>
+</div>

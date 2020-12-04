@@ -21,6 +21,10 @@ import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { UserManageComponent } from './user-manage/user-manage.component';
 import { ScheduleCoursesComponent } from './schedule-courses/schedule-courses.component';
+import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
+import { CourseReviewComponent } from './course-review/course-review.component';
+import { CopyrightEditComponent } from './copyright-edit/copyright-edit.component';
+import { CopyrightDisplayComponent } from './copyright-display/copyright-display.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +38,10 @@ import { ScheduleCoursesComponent } from './schedule-courses/schedule-courses.co
     LoginComponent,
     UserManageComponent,
     ScheduleCoursesComponent,
+    ScheduleEditComponent,
+    CourseReviewComponent,
+    CopyrightEditComponent,
+    CopyrightDisplayComponent,
   ],
   imports: [
     BrowserModule,

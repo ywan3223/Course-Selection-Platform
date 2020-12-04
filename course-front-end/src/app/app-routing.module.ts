@@ -7,6 +7,10 @@ import { RegisterComponent } from './register/register.component';
 import { ContentComponent } from './content/content.component';
 import { UserManageComponent } from './user-manage/user-manage.component';
 import { ScheduleCoursesComponent } from './schedule-courses/schedule-courses.component';
+import { ScheduleEditComponent } from './schedule-edit/schedule-edit.component';
+import { CourseReviewComponent } from './course-review/course-review.component';
+import { CopyrightEditComponent } from './copyright-edit/copyright-edit.component';
+import { CopyrightDisplayComponent } from './copyright-display/copyright-display.component';
 
 import { RouterGuardGuard } from './router-guard.guard';
 
@@ -21,6 +25,13 @@ const routes: Routes = [
       { path: 'courses', component: CoursesStoreComponent },
       { path: 'user-manage', component: UserManageComponent },
       { path: 'schedule-courses/:id', component: ScheduleCoursesComponent },
+      { path: 'schedule-edit/:id', component: ScheduleEditComponent },
+      {
+        path: 'course-review/:subject/:catalog',
+        component: CourseReviewComponent,
+      },
+      { path: 'copyright-edit', component: CopyrightEditComponent },
+      { path: 'copyright-display', component: CopyrightDisplayComponent },
     ],
   },
   {

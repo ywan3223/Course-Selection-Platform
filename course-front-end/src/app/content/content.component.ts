@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-content',
@@ -7,8 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContentComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private router: Router) { }
+  onClickCopyright(): void {
+    this.router.navigate(['/copyright-display']);
+  }
   ngOnInit(): void {
   }
 

@@ -13,10 +13,22 @@ class Schedule {
     this.routes = [
       { url: "/schedule/create", method: "post", handle: this.create },
       { url: "/schedule/delete", method: "post", handle: this.delete },
-      { url: "/private-schedules/get", method: "get", handle: this.getAllPrivateSchedules },
-      { url: "/public-schedules/get", method: "get", handle: this.getAllPublicSchedules },
-      { url: "/schedule-info/get/:id", method: 'get', handle: this.getScheduleInfo },
-      { url: "/schedule/edit", method: 'post', handle: this.editSchedule }
+      {
+        url: "/private-schedules/get",
+        method: "get",
+        handle: this.getAllPrivateSchedules,
+      },
+      {
+        url: "/public-schedules/get",
+        method: "get",
+        handle: this.getAllPublicSchedules,
+      },
+      {
+        url: "/schedule-info/get/:id",
+        method: "get",
+        handle: this.getScheduleInfo,
+      },
+      { url: "/schedule/edit", method: "post", handle: this.editSchedule },
     ];
   }
 
@@ -28,11 +40,11 @@ class Schedule {
       const { id, name, type, description } = req.body;
       const edit_res = await ScheduleModel.edit(id, name, type, description);
       if (edit_res) {
-        res.send(Response(0, 'edit successfully!', {})); 
+        res.send(Response(0, "edit successfully!", {}));
       } else {
-        res.send(Response(0, 'edit failly!', {})); 
+        res.send(Response(0, "edit failly!", {}));
       }
-    } catch(err) {
+    } catch (err) {
       res.send(Response(1, err.stack, []));
     }
   }
@@ -44,8 +56,8 @@ class Schedule {
     try {
       const { id } = req.params;
       const info = await ScheduleModel.getScheduleInfo(id);
-      res.send(Response(0, 'ok', info));
-    } catch(err){
+      res.send(Response(0, "ok", info));
+    } catch (err) {
       res.send(Response(1, err.stack, []));
     }
   }
@@ -56,8 +68,8 @@ class Schedule {
   async getAllPublicSchedules(req, res) {
     try {
       const all_public_schedules = await ScheduleModel.getAllPublicSchedules();
-      res.send(Response(0, 'ok', all_public_schedules));
-    } catch(err) {
+      res.send(Response(0, "ok", all_public_schedules));
+    } catch (err) {
       res.send(Response(1, err.stack, []));
     }
   }
@@ -80,8 +92,8 @@ class Schedule {
 
       //get all user's schedules
       const all_schedules = await ScheduleModel.getAllSchedules(user_info.id);
-      res.send(Response(0, 'ok', all_schedules));
-    } catch(err) {
+      res.send(Response(0, "ok", all_schedules));
+    } catch (err) {
       res.send(Response(1, err.stack, []));
     }
   }
@@ -138,6 +150,8 @@ class Schedule {
    */
   async create(req, res) {
     try {
+      // create new schedule
+      let { name, type = "private", description = "" } = req.body;
       // check signature whether is right or not
       const signature = jwt.resolveHeaderSignature(req);
       const secret = require("../secrets.json").secret;
@@ -168,16 +182,21 @@ class Schedule {
         return;
       }
 
-      // check public schedule whether up to maximun or not
-      let public_schedule_count = await ScheduleModel.getPublicScheduleCount();
-      if (public_schedule_count >= 10) {
-        res.send(Response(0, 'sorry, the public count is up to maximum', {}));
-        return;
+      if (type === "public") {
+        // check public schedule whether up to maximun or not
+        let public_schedule_count = await ScheduleModel.getPublicScheduleCount();
+        if (public_schedule_count >= 10) {
+          res.send(Response(0, "sorry, the public count is up to maximum", {}));
+          return;
+        }
       }
 
-      // create new schedule
-      let { name, type = "private", description = '' } = req.body;
-      const create_res = await ScheduleModel.create(name, user_info.id, type, description);
+      const create_res = await ScheduleModel.create(
+        name,
+        user_info.id,
+        type,
+        description
+      );
       if (create_res) {
         res.send(Response(0, "create successfully!", {}));
       } else {

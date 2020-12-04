@@ -256,13 +256,15 @@ class Course {
 
   /**
    * /course/search
-   * @query { classname }
+   * @query { className }
    * @query { catalog }
    */
   async search(req, res) {
     try {
-      let { catalog, classname } = req.query;
-      const courses = await CourseModel.search(catalog, classname);
+      let { catalog, className } = req.query;
+      catalog = catalog ? catalog.toUpperCase() : catalog;
+      className = className ? className.toUpperCase() : className;
+      const courses = await CourseModel.search(catalog, className);
       res.send(Response(0, "ok", courses));
     } catch (err) {
       res.send(Response(1, err.stack, {}));

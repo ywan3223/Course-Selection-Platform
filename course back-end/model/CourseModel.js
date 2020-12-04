@@ -139,9 +139,10 @@ class CourseModel {
   async search(catalog, classname) {
     let res = [];
     const list = COURSE_DATAS.filter((item) => {
+      const className = item.className.replace(/ /g, "");
       return (
         (catalog ? String(item.catalog_nbr).includes(catalog) : true) &&
-        (classname ? item.className.includes(classname) : true)
+        (classname ? className.includes(classname) : true)
       );
     });
     res = this.forMatList(list);

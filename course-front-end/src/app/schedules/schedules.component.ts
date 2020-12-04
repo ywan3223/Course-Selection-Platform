@@ -60,7 +60,7 @@ export class SchedulesComponent implements OnInit {
   async onCreate(): Promise<void> {
     const formData = this.formData;
     for (const key in formData) {
-      if (formData[key] === '') {
+      if (formData[key] === '' && key !== 'description') {
         alert(`please input the ${key}`);
         return;
       }
@@ -94,13 +94,16 @@ export class SchedulesComponent implements OnInit {
       method: 'GET',
     });
     if (res && res.data) {
+      for (const item of res.data) {
+        item.timestamp = new Date(item.timestamp).toLocaleString();
+      }
       this.schedules = res.data;
     }
   }
 
   async getIfCanEdit(): Promise<void> {
     const url = this.router.url;
-    if (url.includes('public')) {
+    if (this.userInfo.id && url.includes('public')) {
       this.canEdit = true;
     }
   }

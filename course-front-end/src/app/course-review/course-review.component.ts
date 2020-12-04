@@ -45,7 +45,7 @@ export class CourseReviewComponent implements OnInit {
       method: 'POST',
       body: JSON.stringify({
         id,
-        new_visibility: newVisibility
+        new_visibility: newVisibility,
       }),
     });
   }
@@ -92,6 +92,9 @@ export class CourseReviewComponent implements OnInit {
       }
     );
     if (res && res.data) {
+      for (const item of res.data) {
+        item.timestamp = new Date(item.timestamp).toLocaleString();
+      }
       this.reviews = res.data;
     }
   }

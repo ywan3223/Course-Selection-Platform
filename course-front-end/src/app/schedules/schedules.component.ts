@@ -16,15 +16,21 @@ enum ScheduleType {
 export class SchedulesComponent implements OnInit {
   type = 'public';
   role = '';
+  userInfo = {
+    id: 0,
+  };
+  canEdit = false;
   formData = {
     name: '',
     type: 'private',
+    description: '',
   };
   displayedColumns: string[] = [
     'name',
     'type',
     'creator',
     'CourseCount',
+    'description',
     'timestamp',
     'operation',
   ];
@@ -92,11 +98,24 @@ export class SchedulesComponent implements OnInit {
     }
   }
 
+  async getIfCanEdit(): Promise<void> {
+    const url = this.router.url;
+    if (url.includes('public')) {
+      this.canEdit = true;
+    }
+  }
+
+  onEdit(element): void {
+    this.router.navigate([`/schedule-edit/${element.id}`]);
+  }
+
   ngOnInit(): void {
     const userInfo = getUserInfo();
     if (userInfo && userInfo.role) {
       this.role = userInfo.role;
+      this.userInfo = userInfo;
     }
     this.loadSchedules();
+    this.getIfCanEdit();
   }
 }

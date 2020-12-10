@@ -1,6 +1,6 @@
 import { getSignature } from './localstorage';
 
-const baseUrl = 'http://localhost:3000';
+const baseUrl = 'http://ec2-54-224-170-165.compute-1.amazonaws.com:3000';
 export function request(
   url: string,
   config: any,
